@@ -125,12 +125,12 @@
 
 <div class="menu">
     <div class="category">
-        <span class="category-title">💇‍♀️ Peinados</span>
+        <span class="category-title">💇‍♀️ Peinados (¡Sorpresas!)</span>
         <div class="button-group">
-            <button onclick="changePiece('layer-hair', 'pelo1.png')">1</button>
-            <button onclick="changePiece('layer-hair', 'pelo2.png')">2</button>
-            <button onclick="changePiece('layer-hair', 'pelo3.png')">3</button>
-            <button onclick="changePiece('layer-hair', 'pelo4.png')">4</button>
+            <button onclick="openAdLink()">1</button>
+            <button onclick="openAdLink()">2</button>
+            <button onclick="openAdLink()">3</button>
+            <button onclick="openAdLink()">4</button>
             <button onclick="changePiece('layer-hair', '')">Quitar</button>
         </div>
     </div>
@@ -231,8 +231,18 @@
         top.style.display = "none";
     }
 
+    // Abre el link directo de Monetag en una pestaña nueva
+    function openAdLink() {
+        playSound('click-sound');
+        window.open('https://omg10.com/4/11043852', '_blank');
+    }
+
     function takePhoto() {
         playSound('magic-sound');
+        
+        // Abre tu enlace publicitario al hacer clic en guardar
+        window.open('https://omg10.com/4/11043852', '_blank');
+
         const container = document.getElementById('doll-container');
 
         html2canvas(container, {
