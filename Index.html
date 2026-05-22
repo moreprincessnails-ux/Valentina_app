@@ -2,13 +2,260 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🎀Valentina🎀</title>
+
     <meta name="monetag" content="3935371e6f8920efbc7671a71deb7548">
-    
-    <title>Valentina</title>
-    </head>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <style>
+        body {
+        background-color: #ffe4e1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Segoe UI', Tahoma, sans-serif;
+        margin: 0;
+        padding: 20px;
+        /* Evita que el usuario seleccione texto o imágenes en la app */
+        -webkit-user-select: none;
+        user-select: none;
+        }
+
+        h2 { color: #d87093; margin-bottom: 10px; }
+
+        /* CONTENEDOR DE LA MUÑECA */
+        #doll-container {
+        position: relative;
+        width: 320px;
+        height: 480px;
+        background-color: #fff;
+        border: 8px solid #fff;
+        border-radius: 20px;
+        box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
+        overflow: hidden;
+        }
+
+        .layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        }
+
+        #layer-bg { object-fit: cover; z-index: 1; }
+        #base-body { z-index: 2; }
+        #layer-bottom { z-index: 3; }
+        #layer-top { z-index: 4; }
+        #layer-hair { z-index: 5; }
+
+        /* MENÚ Y BOTONES */
+        .menu {
+        margin-top: 20px;
+        width: 100%;
+        max-width: 350px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        }
+
+        .category {
+        background: white;
+        padding: 10px;
+        border-radius: 12px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .category-title {
+        font-size: 14px;
+        font-weight: bold;
+        color: #d87093;
+        margin-bottom: 8px;
+        display: block;
+        }
+
+        .button-group {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        /* Scroll suave para móviles */
+        -webkit-overflow-scrolling: touch;
+        }
+
+        button {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 20px;
+        background: #ffb6c1;
+        color: white;
+        white-space: nowrap;
+        font-size: 12px;
+        cursor: pointer;
+        }
+
+        button:active { background: #ff85a2; }
+
+        .btn-photo {
+        background: #d87093 !important;
+        font-weight: bold;
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        }
+    </style>
+</head>
 <body>
 
-    </body>
+<h2>🎀Valentina🎀</h2>
+
+<div id="doll-container">
+    <img id="layer-bg" class="layer" src="fondo1.jpg">
+    <img id="base-body" class="layer" src="body.png">
+    <img id="layer-bottom" class="layer" src="" style="display:none;">
+    <img id="layer-top" class="layer" src="" style="display:none;">
+    <img id="layer-hair" class="layer" src="" style="display:none;">
+</div>
+
+<audio id="click-sound" src="click.mp3" preload="auto"></audio>
+<audio id="magic-sound" src="magic.mp3" preload="auto"></audio>
+
+<div class="menu">
+    <div class="category">
+        <span class="category-title">💇‍♀️ Peinados</span>
+        <div class="button-group">
+            <button onclick="changePiece('layer-hair', 'pelo1.png')">1</button>
+            <button onclick="changePiece('layer-hair', 'pelo2.png')">2</button>
+            <button onclick="changePiece('layer-hair', 'pelo3.png')">3</button>
+            <button onclick="changePiece('layer-hair', 'pelo4.png')">4</button>
+            <button onclick="changePiece('layer-hair', '')">Quitar</button>
+        </div>
+    </div>
+
+    <div class="category">
+        <span class="category-title">👚 Prendas de arriba</span>
+        <div class="button-group">
+            <button onclick="changePiece('layer-top', 'top1.png')">1</button>
+            <button onclick="changePiece('layer-top', 'top2.png')">2</button>
+            <button onclick="changePiece('layer-top', 'top3.png')">3</button>
+            <button onclick="changePiece('layer-top', 'top4.png')">4</button>
+            <button onclick="changePiece('layer-top', 'top5.png')">5</button>
+            <button onclick="changePiece('layer-top', 'top6.png')">6</button>
+            <button onclick="changePiece('layer-top', 'top7.png')">7</button>
+            <button onclick="changePiece('layer-top', 'top8.png')">8</button>
+            <button onclick="changePiece('layer-top', 'top9.png')">9</button>
+            <button onclick="changePiece('layer-top', 'shirt.png')">10</button>
+            <button onclick="changePiece('layer-top', 'shirt2.png')">11</button>
+            <button onclick="changePiece('layer-top', '')">Quitar</button>
+        </div>
+    </div>
+
+    <div class="category">
+        <span class="category-title">👖 Prendas de abajo</span>
+        <div class="button-group">
+            <button onclick="changePiece('layer-bottom', 'faldazul.png')">1</button>
+            <button onclick="changePiece('layer-bottom', 'F1.png')">2</button>
+            <button onclick="changePiece('layer-bottom', 'f2.png')">3</button>
+            <button onclick="changePiece('layer-bottom', 'f3.png')">4</button>
+            <button onclick="changePiece('layer-bottom', 'F4.png')">5</button>
+            <button onclick="changePiece('layer-bottom', 'f5.png')">6</button>
+            <button onclick="changePiece('layer-bottom', 'f6.png')">7</button>
+            <button onclick="changePiece('layer-bottom', 'f8.png')">8</button>
+            <button onclick="changePiece('layer-bottom', 'f9.png')">9</button>
+            <button onclick="changePiece('layer-bottom', 'F10.png')">10</button>
+            <button onclick="changePiece('layer-bottom', 'S1.png')">11</button>
+            <button onclick="changePiece('layer-bottom', '')">Quitar</button>
+        </div>
+    </div>
+
+    <div class="category">
+        <span class="category-title">👗 Vestidos</span>
+        <div class="button-group">
+            <button onclick="putDress('traje1.png')">1</button>
+            <button onclick="conjunto.png')">2</button>
+            <button onclick="putDress('3.png')">3</button>
+            <button onclick="putDress('4.png')">4</button>
+            <button onclick="putDress('5.png')">5</button>
+            <button onclick="putDress('6.png')">6</button>
+            <button onclick="putDress('7.png')">7</button>
+            <button onclick="putDress('8.png')">8</button>
+            <button onclick="putDress('9.png')">9</button>
+            <button onclick="putDress('10.png')">10</button>
+            <button onclick="putDress('v10.png')">11</button>
+            <button onclick="putDress('v11.png')">12</button>
+            <button onclick="removeDress()">Quitar</button>
+        </div>
+    </div>
+
+    <button class="btn-photo" onclick="takePhoto()">📸 GUARDAR OUTFIT</button>
+</div>
+
+<script>
+    function playSound(id) {
+        const sound = document.getElementById(id);
+        if (sound) {
+            sound.currentTime = 0;
+            sound.play().catch(e => console.log("Audio play prevented"));
+        }
+    }
+
+    function changePiece(layerId, imagePath) {
+        playSound('click-sound');
+        const layer = document.getElementById(layerId);
+        if (layer) {
+            if(imagePath === "") {
+                layer.src = "";
+                layer.style.display = "none";
+            } else {
+                layer.src = imagePath;
+                layer.style.display = "block";
+            }
+        }
+    }
+
+    function putDress(imagePath) {
+        playSound('magic-sound');
+        changePiece('layer-top', imagePath);
+        const bottom = document.getElementById('layer-bottom');
+        bottom.src = "";
+        bottom.style.display = "none";
+    }
+
+    function removeDress() {
+        playSound('click-sound');
+        const top = document.getElementById('layer-top');
+        top.src = "";
+        top.style.display = "none";
+    }
+
+    function takePhoto() {
+        playSound('magic-sound');
+        const container = document.getElementById('doll-container');
+
+        html2canvas(container, {
+            useCORS: true,
+            backgroundColor: null,
+            logging: false
+        }).then(canvas => {
+            const dataUrl = canvas.toDataURL("image/png");
+
+            const newWindow = window.open();
+            if (newWindow) {
+                newWindow.document.write('<div style="text-align:center; font-family:sans-serif; background:#ffe4e1; height:100vh; padding:20px;">');
+                newWindow.document.write('<h2>✨ Tu diseño de Valentina ✨</h2>');
+                newWindow.document.write('<img src="' + dataUrl + '" style="border:10px solid white; border-radius:20px; box-shadow:0 10px 20px rgba(0,0,0,0.2); max-width:90%;">');
+                newWindow.document.write('<p><strong>Mantén pulsada la imagen</strong> para guardarla en tu móvil.</p>');
+                newWindow.document.write('<button onclick="window.close()" style="padding:10px 20px; border-radius:20px; border:none; background:#d87093; color:white;">Volver al juego</button>');
+                newWindow.document.write('</div>');
+            } else {
+                alert("¡Outfit capturado con éxito! Mantén presionada la pantalla si tu dispositivo lo permite.");
+            }
+        });
+    }
+</script>
+
+</body>
 </html>
